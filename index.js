@@ -114,6 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         responses.appendChild(responsesContent);
         responsesContent.appendChild(routeText);
         responsesContent.appendChild(dataText);
-        counter.textContent = "Resultats : " + responses.childElementCount;
+        counter.textContent = "Results : " + responses.childElementCount;
     }
 });
