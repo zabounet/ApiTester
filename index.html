@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="mainContainer">
+            <h1 class="title">API Tester</h1>
+
+            <div class="container">
+                <label for="Method">Request Method</label>
+                <select name="method" id="Method">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                </select>
+                <i>Press "Ctrl" or "Control" to change request method !</i>
+            </div>
+
+            <div class="RouteContainer">
+                <div class="container">
+                    <label for="Url">API url</label>
+                    <input type="text" id="Url" placeholder="exemple : https://swapi.dev/api/">
+                </div>
+                <div class="container">
+                    <label for="Route">API route</label>
+                    <input type="text" id="Route" placeholder="exemple : people/1/">
+                </div>
+            </div>
+
+            <!-- ! Needs testing  -->
+            <label for="Body">Request Body</label>
+            <textarea id="ReqBody" placeholder="exemple : { 'name': 'Luke Skywalker' }"></textarea>
+
+            <button id="TestEndpoints">Test route</button>
+            <button id="Clear">Clear responses history</button>
+
+            <div class="History">
+                <h1 class="title">Request History</h1>
+                <div id="History"></div>
+            </div>
+        </div>
+        <div style="height: 100%; border: #18b963 1px solid;"></div>
+        <div class="responseContainer">
+            <h1 class="title">Responses</h1>
+
+            <p id="Counter">Resultats : 0</p>
+            <div id="Error"></div>
+
+            <div id="Responses"></div>
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>
+
+
+<!--
+    Possibility to add params to the url 
+    Possibility to add custom headers to the request
+    Add more methods such as PUT, DELETE, PATCH, etc.
+    Add a way to save the responses in a json file
+    Show history in a table
+    Add option to write request body as key value pairs
+
+    FAR FUTURE
+    Add a way to send different types of data such as form data, XML, RAW, etc.
+    Add a way to send files
+    Add stats for the requests and responses such as average time, fastest request, slowest request, etc.
+    Add a way to test the API resistance to concurrency and high traffic
+-->
