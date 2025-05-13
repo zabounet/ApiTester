@@ -9,6 +9,8 @@
 ```
 
 ## version 0.1.1
+```
 - Fixed some quirks
 - Added syntax highlighting for JSON response
 - Slightly improved layout
+```
