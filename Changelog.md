@@ -11,4 +11,4 @@
 ## version 0.1.1
 - Fixed some quirks
 - Added syntax highlighting for JSON response
-- slightly improved layout
+- Slightly improved layout

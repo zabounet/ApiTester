@@ -14,7 +14,7 @@ No libraries used, only HTML, CSS and vanilla JavaScript.
 4. Enjoy, feel free to contribute and give suggestions !
 
 ## Features
-### Version 0.1.0 :
+### Version 0.1.1 :
 - GET, POST requests
 - Request history
 - Send custom request body as JSON for POST requests such as 
