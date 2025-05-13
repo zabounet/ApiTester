@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let method = document.querySelector("#Method");
     let baseUrl = document.querySelector("#Url");
     let reqBody = document.querySelector("#ReqBody");
+    let reqBodyBox = document.querySelector("#ReqBodyBox");
     let history = document.querySelector("#History");
     let counter = document.querySelector("#Counter");
 
@@ -14,27 +15,43 @@ document.addEventListener('DOMContentLoaded', () => {
         Api(baseUrl.value, route.value);
     });
 
-    document.addEventListener('keydown', (e) => {
-        // if (e.key == "Enter") {
-        //     Api(baseUrl.value, route.value);
-        // }
+    method.addEventListener('change', () => {
+        console.log(method.value);
 
+    })
+
+    document.addEventListener('keydown', (e) => {
         if (e.key == "Control") {
             if (method.value == "GET") {
                 method.value = "POST";
-                reqBody.style.display = "block";
+                reqBodyBox.style.display = "flex";
             }
             else {
                 method.value = "GET";
-                reqBody.style.display = "none";
+                reqBodyBox.style.display = "none";
             }
+        }
+        if(e.key == "Enter"){
+            Api(baseUrl.value, route.value);
         }
     });
 
+    method.addEventListener('change', () => {
+        switch (method.value) {
+            case "GET":
+                reqBodyBox.style.display = "none";
+                break;
+            case "POST":
+                reqBodyBox.style.display = "flex";
+                break;
+            default:
+                break;
+        }
+    })
     document.querySelector("#Clear").addEventListener('click', (e) => {
         responses.innerHTML = "";
         counter.textContent = "Resultats : 0";
-
+        history.innerHTML = "";
     });
 
     function Api(url, route) {
@@ -63,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
-        console.log(post);
         // Reset the error message
         error.textContent = "";
 
@@ -96,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
             error.textContent = `Error : ${err}`;
         }
 
-
     }
 
     function displayDatas(datas) {
@@ -104,16 +119,44 @@ document.addEventListener('DOMContentLoaded', () => {
         let routeText = document.createElement('h3');
         let dataText = document.createElement('pre');
 
-        routeText.textContent += "Route : " + route.value;
+        routeText.innerHTML = "URL : " + baseUrl.value + " <br> Route : " + route.value;
+
         if (datas) {
-            dataText.textContent += JSON.stringify(datas, null, 2);
+            dataText.innerHTML = syntaxHighlight(datas); // Use innerHTML for styled output
+        } else {
+            dataText.textContent = "No Data Found";
         }
-        else {
-            dataText.textContent += "No Data Found";
-        }
-        responses.appendChild(responsesContent);
+
         responsesContent.appendChild(routeText);
         responsesContent.appendChild(dataText);
+        responses.appendChild(responsesContent);
         counter.textContent = "Results : " + responses.childElementCount;
     }
+
+    function syntaxHighlight(json) {
+        if (typeof json !== 'string') {
+            json = JSON.stringify(json, null, 2);
+        }
+
+        json = json.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+
+        return json.replace(/("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b)/g, match => {
+            let cls = 'number';
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    cls = 'key';
+                } else {
+                    cls = 'string';
+                }
+            } else if (/true|false/.test(match)) {
+                cls = 'boolean';
+            } else if (/null/.test(match)) {
+                cls = 'null';
+            }
+            return `<span class="${cls}">${match}</span>`;
+        });
+    }
+
 });

@@ -26,23 +26,26 @@
             <div class="RouteContainer">
                 <div class="container">
                     <label for="Url">API url</label>
-                    <input type="text" id="Url" placeholder="ex : https://swapi.dev/api/">
+                    <input type="text" id="Url" placeholder="ex : https://swapi.tech/api/">
                 </div>
                 <div class="container">
                     <label for="Route">API route</label>
-                    <input type="text" id="Route" placeholder="ex : people/1/">
+                    <input type="text" id="Route" placeholder="ex : people/1">
                 </div>
             </div>
 
             <!-- ! Needs testing  -->
-            <label for="Body">Request Body</label>
-            <textarea id="ReqBody" placeholder="ex : { 'name': 'Luke Skywalker' }"></textarea>
+             <div id="ReqBodyBox">
+                <label for="Body">Request Body</label>
+                <textarea id="ReqBody" placeholder='ex : { "name": "Luke Skywalker" }'></textarea>
+             </div>
 
             <button id="TestEndpoints">Test route</button>
             <button id="Clear">Clear responses history</button>
 
             <div class="History">
                 <h1 class="title">Request History</h1>
+                <!-- notice: Make it a table -->
                 <div id="History"></div>
             </div>
         </div>

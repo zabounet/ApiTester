@@ -7,3 +7,8 @@
 - Request history
 - Send custom request body as JSON for POST requests
 ```
+
+## version 0.1.1
+- Fixed some quirks
+- Added syntax highlighting for JSON response
+- slightly improved layout
